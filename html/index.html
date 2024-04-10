@@ -1,0 +1,275 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>VehicleSeat Menu by Brace - converted by Ariies</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/gh/eliyantosarage/font-awesome-pro@main/fontawesome-pro-6.5.1-web/css/all.min.css" rel="stylesheet">
+    <link href="https://db.onlinewebfonts.com/c/1dc8ecd8056a5ea7aa7de1db42b5b639?family=Gilroy-Regular" rel="stylesheet">
+</head>
+<body id="VehicleSeat" unselectable="on">
+    <div class="car">
+        <div id="seat1" class="seat seat0"></div>
+        <div id="seat1" class="seat seat1"></div>
+        <div id="seat1" class="seat seat2"></div>
+    </div>
+
+    <div class="bus">
+        <div id="seat1" class="seat seat0"></div>
+        <div id="seat1" class="seat seat1"></div>
+        <div id="seat1" class="seat seat2"></div>
+        <div id="seat1" class="seat seat3"></div>
+        <div id="seat1" class="seat seat4"></div>
+        <div id="seat1" class="seat seat5"></div>
+        <div id="seat1" class="seat seat6"></div>
+        <div id="seat1" class="seat seat7"></div>
+        <div id="seat1" class="seat seat8"></div>
+        <div id="seat1" class="seat seat9"></div>
+        <div id="seat1" class="seat seat10"></div>
+    </div>
+	
+	<div class="ov">
+        <div id="seat1" class="seat seat0"></div>
+        <div id="seat1" class="seat seat1"></div>
+        <div id="seat1" class="seat seat2"></div>
+        <div id="seat1" class="seat seat3"></div>
+        <div id="seat1" class="seat seat4"></div>
+    </div>
+    <div class="helpText">
+        <p id="helpText"></p>
+    </div>
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+        window.addEventListener("message", function (event) {
+            var d = event.data;
+            var t = event.data.type;
+
+            if (t == "showSeatSelection") {
+                $('#VehicleSeat').fadeIn(350);
+                $(".car").hide();
+                $(".bus").hide();
+                $(".ov").hide();
+
+                if (d.availableSeats > 8) {
+                    $(".bus").show();
+                } else if (d.availableSeats > 3) {
+                    $(".ov").show();
+                } else {
+                    $(".car").show();
+                }
+
+                for (let i = 0; i < 11; i++) {
+                    if (d.availableSeats > i) {
+                        $(`.seat${i}`).show();
+                        $(`.seat${i}`).click(function () {
+                            $.post(`https://${GetParentResourceName()}/takeSeat`, JSON.stringify({ seatIndex: i, vehicleNetId: d.remoteId }));
+                            $('#VehicleSeat').fadeOut(350);
+                        });
+                    } else {
+                        $(`.seat${i}`).hide();
+                    }
+                }
+            }
+        });
+    });
+
+
+    window.addEventListener("keyup", function onEvent(event) {
+        if (event.key === "Escape") {
+            $.post(`https://${GetParentResourceName()}/exitMenu`, JSON.stringify({}));
+            $('#VehicleSeat').fadeOut(350);   
+        }
+    });
+
+    </script>
+	<style rel="stylesheet" type="text/css">
+	#VehicleSeat {
+            background-color: transparent;
+        }
+
+        .car {
+            height: 730px;
+            width: 350px;
+            background-image: url(img/car.png);
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-top: -365px;
+            margin-left: -175px;
+            opacity: 0.70;
+        }
+
+        .bus {
+            height: 800px;
+            width: 380px;
+            background-image: url(img/bus.png);
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-top: -400px;
+            margin-left: -190px;
+            opacity: 0.70;
+        }
+		
+		.ov {
+            height: 800px;
+            width: 380px;
+            background-image: url(img/ov.png);
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-top: -400px;
+            margin-left: -190px;
+            opacity: 0.70;
+        }
+
+		.helpText {
+            display: none;
+            user-select: none;
+            height: 30px;
+            width: 290px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-top: -410px;
+            margin-left: -147.5px;
+            opacity: 0.60;
+            background: #171D1F;
+            border-radius: 5px;
+        }
+
+        .helpText p {
+            color: #A8D1DD;
+            font-family: 'Gilroy-Regular';
+            text-align: center;
+            font-size: 2vh;
+        }
+
+        .seat {
+            height: 70px;
+            width: 70px;
+        }
+
+        .car .seat.seat0 {
+            position: relative;
+            top: 290px;
+            left: 210px;
+        }
+
+        .car .seat.seat1 {
+            position: relative;
+            top: 340px;
+            left: 60px;
+        }
+
+        .car .seat.seat2 {
+            position: relative;
+            top: 270px;
+            left: 210px;
+        }
+		
+		.ov .seat.seat0 {
+            position: relative;
+            top: 160px;
+            left: 225px;
+        }
+
+        .ov .seat.seat1 {
+            position: relative;
+            top: 180px;
+            left: 80px;
+        }
+
+        .ov .seat.seat2 {
+            position: relative;
+            top: 110px;
+            left: 225px;
+        }
+
+        .ov .seat.seat3 {
+            position: relative;
+            top: 130px;
+            left: 80px;
+        }
+
+        .ov .seat.seat4 {
+            position: relative;
+            top: 60px;
+            left: 225px;
+        }
+
+        .bus .seat.seat0 {
+            position: relative;
+            top: 160px;
+            left: 225px;
+        }
+
+        .bus .seat.seat1 {
+            position: relative;
+            top: 180px;
+            left: 80px;
+        }
+
+        .bus .seat.seat2 {
+            position: relative;
+            top: 110px;
+            left: 225px;
+        }
+
+        .bus .seat.seat3 {
+            position: relative;
+            top: 130px;
+            left: 80px;
+        }
+
+        .bus .seat.seat4 {
+            position: relative;
+            top: 60px;
+            left: 225px;
+        }
+
+        .bus .seat.seat5 {
+            position: relative;
+            top: 80px;
+            left: 80px;
+        }
+
+        .bus .seat.seat6 {
+            position: relative;
+            top: 10px;
+            left: 225px;
+        }
+
+        .bus .seat.seat7 {
+            position: relative;
+            top: 30px;
+            left: 80px;
+        }
+
+        .bus .seat.seat8 {
+            position: relative;
+            top: -40px;
+            left: 225px;
+        }
+
+        .bus .seat.seat9 {
+            position: relative;
+            top: -20px;
+            left: 80px;
+        }
+
+        .bus .seat.seat10 {
+            position: relative;
+            top: -90px;
+            left: 225px;
+        }
+	</style>
+</body>
+</html>

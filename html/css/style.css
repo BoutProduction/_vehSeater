@@ -1,0 +1,16 @@
+.seat {
+    background: rgba(134, 255, 128, 1);
+    width: 8vw;
+    position: relative;
+    left: 1.5vw;
+    top: 1vw;
+    -webkit-border-radius: 80px;
+    -moz-border-radius: 80px;
+    border-radius: 50px;
+    font-size: 1vw;
+    font-family: OSL;
+    cursor: pointer;
+    height: 2vw;
+    line-height: 1.7;
+    transition: 0.2s;
+}
