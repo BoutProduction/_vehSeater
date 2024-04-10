@@ -1,4 +1,5 @@
-https://media-upload.net/uploads/_3GxlroUWkbB.png 
+
+![](https://media-upload.net/uploads/_3GxlroUWkbB.png)
 <strong>_vehSeater [ v.1.0 ]</strong>
 
 <blockquote>
@@ -21,6 +22,6 @@ Adds a UI that is displayed when you get into the vehicle and with which you can
 >[Streamable](https://streamable.com/xpjajo)
 
 **Links**<br>
->[Github](https://streamable.com/xpjajo)
+>[Forum](https://streamable.com/xpjajo)
 
 </blockquote>
