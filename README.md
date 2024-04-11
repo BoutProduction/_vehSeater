@@ -22,6 +22,6 @@ Adds a UI that is displayed when you get into the vehicle and with which you can
 >[Streamable](https://streamable.com/xpjajo)
 
 **Links**<br>
->[Forum]([https://streamable.com/xpjajo](https://forum.cfx.re/t/standalone-vehseater-choose-where-you-want-to-sit/5226035))
+>[Forum](https://forum.cfx.re/t/standalone-vehseater-choose-where-you-want-to-sit/5226035)
 
 </blockquote>
